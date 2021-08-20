@@ -44,14 +44,14 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
             g.drawString("Punkty: " +punkty,570, 20);
             g.drawString("Level: " +level,570, 40);
         }
-        if(level == 2){
+        if(punkty >= 5 && punkty <=10){
             g.setColor(Color.black);
             g.fillRect(0,0,700,600);
             //Gracz
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.ORANGE);
             g.fillRect(x,475,60,60);
             //Wróg
-            g.setColor(Color.ORANGE);
+            g.setColor(Color.pink);
             g.fillRect(enemyX1,ey,52,52);
             g.fillRect(enemyX2,ey,52,52);
             g.fillRect(enemyX3,ey,52,52);
@@ -69,7 +69,6 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(level == 1){
             ey+=eyspeed;
-            System.out.println();
             repaint();
             if(ey >= 580){
                 punkty++;
@@ -77,6 +76,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
                 ey = 5;
                 enemyX1 = liczba.nextInt(6)*100;
                 enemyX2 = liczba.nextInt(6)*100;
+                //enemyX3 = liczba.nextInt(6)*100;
             }
             Rectangle gracz = new Rectangle(x,475,60,60);
             Rectangle wrog1 = new Rectangle(enemyX1,ey,50,50);
@@ -86,12 +86,9 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
                 time.stop();
             }
         }
-        if (punkty == 5){
-            level++;
-        }
-        if (level == 2){
+        if (punkty >= 5 && punkty <=10){
+            level=2;
             ey+=eyspeed;
-            System.out.println();
             repaint();
             if(ey >= 580){
                 punkty++;
@@ -141,9 +138,10 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
     private void reset() {
         ey = 10;
+        eyspeed = 1;
         enemyX1 = liczba.nextInt(6)*100;
         enemyX2 = liczba.nextInt(6)*100;
-        enemyX3 = liczba.nextInt(6)*100;
+        //enemyX3 = liczba.nextInt(6)*100;
         x = 300;
         punkty = 0;
         time.start();
