@@ -12,6 +12,5 @@ public class Main {
         jf.setResizable(false);
         jf.setVisible(true);
         jf.add(gra);
-
     }
 }
